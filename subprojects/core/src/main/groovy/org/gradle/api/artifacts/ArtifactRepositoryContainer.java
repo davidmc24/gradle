@@ -52,8 +52,10 @@ import java.util.List;
  */
 public interface ArtifactRepositoryContainer extends NamedDomainObjectList<ArtifactRepository>, Configurable<ArtifactRepositoryContainer> {
     String DEFAULT_MAVEN_CENTRAL_REPO_NAME = "MavenRepo";
+    String DEFAULT_BINTRAY_JCENTER_REPO_NAME = "BinTrayJCenterRepo";
     String DEFAULT_MAVEN_LOCAL_REPO_NAME = "MavenLocal";
     String MAVEN_CENTRAL_URL = "http://repo1.maven.org/maven2/";
+    String BINTRAY_JCENTER_URL = "http://dl.bintray.com/content/bintray/jcenter";
     String MAVEN_REPO_PATTERN = "[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]";
     String DEFAULT_CACHE_ARTIFACT_PATTERN
             = "[organisation]/[module](/[branch])/[type]s/[artifact]-[revision](-[classifier])(.[ext])";

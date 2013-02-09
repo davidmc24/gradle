@@ -141,6 +141,19 @@ class DefaultBaseRepositoryFactoryTest {
         assert repo.url == centralUrl
     }
 
+    @Test public void testCreateBintrayJCenterRepo() {
+        def jcenterUrl = new URI(RepositoryHandler.BINTRAY_JCENTER_URL)
+
+        context.checking {
+            allowing(fileResolver).resolveUri(RepositoryHandler.BINTRAY_JCENTER_URL)
+            will(returnValue(jcenterUrl))
+        }
+
+        def repo = factory.createBintrayJCenterRepository()
+        assert repo instanceof DefaultMavenArtifactRepository
+        assert repo.url == jcenterUrl
+    }
+
     @Test public void createIvyRepository() {
         def repo = factory.createIvyRepository()
         assert repo instanceof DefaultIvyArtifactRepository

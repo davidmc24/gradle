@@ -107,6 +107,12 @@ public class DefaultBaseRepositoryFactory implements BaseRepositoryFactory {
         return mavenRepository;
     }
 
+    public MavenArtifactRepository createBintrayJCenterRepository() {
+        MavenArtifactRepository mavenRepository = createMavenRepository();
+        mavenRepository.setUrl(RepositoryHandler.BINTRAY_JCENTER_URL);
+        return mavenRepository;
+    }
+
     public IvyArtifactRepository createIvyRepository() {
         return instantiator.newInstance(DefaultIvyArtifactRepository.class, fileResolver, createPasswordCredentials(), transportFactory,
                 locallyAvailableResourceFinder, instantiator

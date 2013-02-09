@@ -82,6 +82,27 @@ class DefaultRepositoryHandlerTest extends DefaultArtifactRepositoryContainerTes
         handler.mavenCentral(artifactUrls: ["abc"]).is(repository)
     }
 
+    public void testBintrayJCenterWithNoArgs() {
+        when:
+        MavenArtifactRepository repository = Mock(TestMavenArtifactRepository)
+        1 * repositoryFactory.createBintrayJCenterRepository() >> repository
+        repository.getName() >> "name"
+
+        then:
+        handler.bintrayJCenter().is(repository)
+    }
+
+    public void testBintrayJCenterWithMap() {
+        when:
+        MavenArtifactRepository repository = Mock(TestMavenArtifactRepository)
+        1 * repositoryFactory.createBintrayJCenterRepository() >> repository
+        1 * repository.setArtifactUrls(["abc"])
+        repository.getName() >> "name"
+
+        then:
+        handler.bintrayJCenter(artifactUrls: ["abc"]).is(repository)
+    }
+
     def testMavenLocalWithNoArgs() {
         when:
         MavenArtifactRepository repository = Mock(TestMavenArtifactRepository)

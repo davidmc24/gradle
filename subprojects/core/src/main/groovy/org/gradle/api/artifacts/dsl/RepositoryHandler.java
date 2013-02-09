@@ -137,6 +137,59 @@ public interface RepositoryHandler extends ArtifactRepositoryContainer {
     MavenArtifactRepository mavenCentral();
 
     /**
+     * Adds a repository which looks in the BinTray JCenter repository for dependencies. The URL used to access this repository is
+     * always {@link org.gradle.api.artifacts.ArtifactRepositoryContainer#BINTRAY_JCENTER_URL}. The behavior of this resolver
+     * is otherwise the same as the ones added by {@link #mavenRepo(java.util.Map)}.
+     *
+     * The following parameter are accepted as keys for the map:
+     *
+     * <table summary="Shows property keys and associated values">
+     * <tr><th>Key</th>
+     *     <th>Description of Associated Value</th></tr>
+     * <tr><td><code>name</code></td>
+     *     <td><em>(optional)</em> The name of the repository. The default is
+     * {@value org.gradle.api.artifacts.ArtifactRepositoryContainer#DEFAULT_BINTRAY_JCENTER_REPO_NAME} is used as the name. A name
+     * must be unique amongst a repository group.
+     * </td></tr>
+     * <tr><td><code>artifactUrls</code></td>
+     *     <td>A single jar repository or a collection of jar repositories containing additional artifacts not found in the BinTray JCenter repository.
+     * But be aware that the POM must exist in BinTray JCenter.
+     * The provided values are evaluated as for {@link org.gradle.api.Project#uri(Object)}.</td></tr>
+     * </table>
+     *
+     * <p>Examples:
+     * <pre>
+     * repositories {
+     *     bintrayJCenter artifactUrls: ["http://www.mycompany.com/artifacts1", "http://www.mycompany.com/artifacts2"]
+     *     bintrayJCenter name: "nonDefaultName", artifactUrls: ["http://www.mycompany.com/artifacts1"]
+     * }
+     * </pre>
+     * </p>
+     *
+     * @param args A list of urls of repositories to look for artifacts only.
+     * @return the added repository
+     */
+    MavenArtifactRepository bintrayJCenter(Map<String, ?> args);
+
+    /**
+     * Adds a repository which looks in the BinTray JCenter repository for dependencies. The URL used to access this repository is
+     * {@value org.gradle.api.artifacts.ArtifactRepositoryContainer#BINTRAY_JCENTER_URL}. The name of the repository is
+     * {@value org.gradle.api.artifacts.ArtifactRepositoryContainer#DEFAULT_BINTRAY_JCENTER_REPO_NAME}.
+     *
+     * <p>Examples:
+     * <pre>
+     * repositories {
+     *     bintrayJCenter()
+     * }
+     * </pre>
+     * </p>
+     *
+     * @return the added resolver
+     * @see #bintrayJCenter(java.util.Map)
+     */
+    MavenArtifactRepository bintrayJCenter();
+
+    /**
      * Adds a repository which looks in the local Maven cache for dependencies. The name of the repository is
      * {@value org.gradle.api.artifacts.ArtifactRepositoryContainer#DEFAULT_MAVEN_LOCAL_REPO_NAME}.
      *

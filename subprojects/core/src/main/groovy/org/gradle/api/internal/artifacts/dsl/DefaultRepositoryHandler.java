@@ -88,6 +88,14 @@ public class DefaultRepositoryHandler extends DefaultArtifactRepositoryContainer
         return addRepository(repositoryFactory.createMavenCentralRepository(), DEFAULT_MAVEN_CENTRAL_REPO_NAME, new ConfigureByMapAction<MavenArtifactRepository>(modifiedArgs));
     }
 
+    public MavenArtifactRepository bintrayJCenter() {
+        return addRepository(repositoryFactory.createBintrayJCenterRepository(), DEFAULT_BINTRAY_JCENTER_REPO_NAME);
+    }
+
+    public MavenArtifactRepository bintrayJCenter(Map<String, ?> args) {
+        return addRepository(repositoryFactory.createBintrayJCenterRepository(), DEFAULT_BINTRAY_JCENTER_REPO_NAME, new ConfigureByMapAction<MavenArtifactRepository>(args));
+    }
+
     public MavenArtifactRepository mavenLocal() {
         return addRepository(repositoryFactory.createMavenLocalRepository(), DEFAULT_MAVEN_LOCAL_REPO_NAME);
     }
